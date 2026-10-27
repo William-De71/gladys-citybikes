@@ -1,0 +1,448 @@
+{
+  "devices": {
+    "velib": {
+      "external_id": "ext:citybikes:station:velib_22002",
+      "should_poll": false,
+      "params": ["CITYBIKES_NETWORK", "CITYBIKES_STATION"],
+      "features": [
+        {
+          "external_id": "ext:citybikes:station:velib_22002:bikes",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:citybikes:station:velib_22002:ebikes",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:citybikes:station:velib_22002:mechanical",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:citybikes:station:velib_22002:docks",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    },
+    "vlille": {
+      "external_id": "ext:citybikes:station:vlille_259",
+      "should_poll": false,
+      "params": ["CITYBIKES_NETWORK", "CITYBIKES_STATION"],
+      "features": [
+        {
+          "external_id": "ext:citybikes:station:vlille_259:bikes",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:citybikes:station:vlille_259:mechanical",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:citybikes:station:vlille_259:docks",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    },
+    "nextbike": {
+      "external_id": "ext:citybikes:station:nextbike-berlin_613751648",
+      "should_poll": false,
+      "params": ["CITYBIKES_NETWORK", "CITYBIKES_STATION"],
+      "features": [
+        {
+          "external_id": "ext:citybikes:station:nextbike-berlin_613751648:bikes",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 999,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "actions": ["test_connection", "search_network", "search_station", "diagnostic"],
+    "config_schema": [
+      {
+        "key": "intro",
+        "type": "section"
+      },
+      {
+        "key": "network",
+        "type": "string"
+      },
+      {
+        "key": "house",
+        "type": "select"
+      },
+      {
+        "key": "stations",
+        "type": "string"
+      },
+      {
+        "key": "nearby",
+        "type": "select"
+      },
+      {
+        "key": "options_section",
+        "type": "section"
+      },
+      {
+        "key": "interval",
+        "type": "select"
+      },
+      {
+        "key": "language",
+        "type": "select"
+      }
+    ],
+    "scene_triggers": [
+      {
+        "key": "bikes_available",
+        "fields": [
+          {
+            "key": "station",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "network_name",
+            "type": "string"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "mechanical",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "station_empty",
+        "fields": [
+          {
+            "key": "station",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "network_name",
+            "type": "string"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "mechanical",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "ebikes_available",
+        "fields": [
+          {
+            "key": "station",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "network_name",
+            "type": "string"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "mechanical",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "ebikes_gone",
+        "fields": [
+          {
+            "key": "station",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "network_name",
+            "type": "string"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "mechanical",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "docks_available",
+        "fields": [
+          {
+            "key": "station",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "network_name",
+            "type": "string"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "mechanical",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "station_full",
+        "fields": [
+          {
+            "key": "station",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "network_name",
+            "type": "string"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "mechanical",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          }
+        ]
+      }
+    ],
+    "scene_actions": [
+      {
+        "key": "get_station",
+        "fields": [
+          {
+            "key": "station",
+            "options": []
+          }
+        ],
+        "outputs": [
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "found",
+            "type": "boolean"
+          },
+          {
+            "key": "open",
+            "type": "boolean"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "mechanical",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "key": "find_station",
+        "fields": [
+          {
+            "key": "kind",
+            "options": ["bike", "ebike", "dock"]
+          },
+          {
+            "key": "near",
+            "options": []
+          }
+        ],
+        "outputs": [
+          {
+            "key": "found",
+            "type": "boolean"
+          },
+          {
+            "key": "station_name",
+            "type": "string"
+          },
+          {
+            "key": "distance",
+            "type": "number"
+          },
+          {
+            "key": "bikes",
+            "type": "number"
+          },
+          {
+            "key": "ebikes",
+            "type": "number"
+          },
+          {
+            "key": "docks",
+            "type": "number"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "widgets": [
+      {
+        "key": "stations",
+        "settings": ["stations"],
+        "options": {}
+      },
+      {
+        "key": "nearby",
+        "settings": ["count", "show"],
+        "options": {
+          "show": ["all", "bike", "ebike", "dock"]
+        }
+      }
+    ]
+  }
+}

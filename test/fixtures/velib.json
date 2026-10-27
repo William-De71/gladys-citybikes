@@ -1,0 +1,293 @@
+{
+  "network": {
+    "id": "velib",
+    "name": "Vélib' Métropole",
+    "location": {
+      "latitude": 48.856614,
+      "longitude": 2.3522219,
+      "city": "Paris",
+      "country": "FR"
+    },
+    "href": "/v2/networks/velib",
+    "company": ["Smovengo"],
+    "license": {
+      "name": "OPEN LICENCE 2.0",
+      "url": "etalab.gouv.fr/wp-content/uploads/2018/11/open-licence.pdf"
+    },
+    "ebikes": true,
+    "gbfs_href": "https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/gbfs.json",
+    "stations": [
+      {
+        "id": "0003131bffcf527ba3a560fc46d38b6f",
+        "name": "Argenson - Château",
+        "latitude": 48.888559314669514,
+        "longitude": 2.2642001509666447,
+        "timestamp": "2026-10-27T22:51:05.560807+00:00Z",
+        "free_bikes": 13,
+        "empty_slots": 12,
+        "extra": {
+          "uid": "22002",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:21:31",
+          "slots": 25,
+          "virtual": false,
+          "station_id": 34300292,
+          "banking": false,
+          "payment-terminal": false,
+          "normal_bikes": 7,
+          "ebikes": 6
+        }
+      },
+      {
+        "id": "212a1e559d18d8b3f08ba8f5360fcdfd",
+        "name": "Messine - Place Du Pérou",
+        "latitude": 48.875448033961,
+        "longitude": 2.31550801901,
+        "timestamp": "2026-10-27T22:51:05.567699+00:00Z",
+        "free_bikes": 0,
+        "empty_slots": 11,
+        "extra": {
+          "uid": "8026",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:18:49",
+          "payment": ["creditcard"],
+          "payment-terminal": true,
+          "slots": 12,
+          "virtual": false,
+          "station_id": 120827885,
+          "banking": true,
+          "normal_bikes": 0,
+          "ebikes": 0
+        }
+      },
+      {
+        "id": "56127eb9720adb51b601e8b935e0a44a",
+        "name": "Beaujon - Wagram",
+        "latitude": 48.875352455985,
+        "longitude": 2.2964416444302,
+        "timestamp": "2026-10-27T22:51:05.560472+00:00Z",
+        "free_bikes": 2,
+        "empty_slots": 26,
+        "extra": {
+          "uid": "8056",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:21:39",
+          "payment": ["creditcard"],
+          "payment-terminal": true,
+          "slots": 29,
+          "virtual": false,
+          "station_id": 224256188,
+          "banking": true,
+          "normal_bikes": 0,
+          "ebikes": 2
+        }
+      },
+      {
+        "id": "78ec9186acd18a0b30bd3156d24b9f8d",
+        "name": "Benjamin Godard - Victor Hugo",
+        "latitude": 48.865983,
+        "longitude": 2.275725,
+        "timestamp": "2026-10-27T22:51:05.585265+00:00Z",
+        "free_bikes": 6,
+        "empty_slots": 28,
+        "extra": {
+          "uid": "16107",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:21:18",
+          "slots": 35,
+          "virtual": false,
+          "station_id": 213688169,
+          "banking": false,
+          "payment-terminal": false,
+          "normal_bikes": 3,
+          "ebikes": 3
+        }
+      },
+      {
+        "id": "bad8c427f2c0ec6e3521c3b4ee5a8e33",
+        "name": "Carnot - Général Lanrezac",
+        "latitude": 48.875443870736,
+        "longitude": 2.2938242935036,
+        "timestamp": "2026-10-27T22:51:05.564847+00:00Z",
+        "free_bikes": 18,
+        "empty_slots": 10,
+        "extra": {
+          "uid": "17033",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:22:09",
+          "payment": ["creditcard"],
+          "payment-terminal": true,
+          "slots": 30,
+          "virtual": false,
+          "station_id": 213691137,
+          "banking": true,
+          "normal_bikes": 14,
+          "ebikes": 4
+        }
+      },
+      {
+        "id": "cd1a791b72f3f9fc5d853d19ed32f311",
+        "name": "Hoche - Tilsitt",
+        "latitude": 48.874836457837,
+        "longitude": 2.2971323132515,
+        "timestamp": "2026-10-27T22:51:05.578694+00:00Z",
+        "free_bikes": 1,
+        "empty_slots": 32,
+        "extra": {
+          "uid": "8057",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:21:26",
+          "slots": 33,
+          "virtual": false,
+          "station_id": 210573120,
+          "banking": false,
+          "payment-terminal": false,
+          "normal_bikes": 0,
+          "ebikes": 1
+        }
+      },
+      {
+        "id": "39cf56a8f11ed63743472daea6a16a8d",
+        "name": "Arsène Houssaye - Champs-Elysées",
+        "latitude": 48.873409276267,
+        "longitude": 2.2977904602885,
+        "timestamp": "2026-10-27T22:51:05.580937+00:00Z",
+        "free_bikes": 5,
+        "empty_slots": 33,
+        "extra": {
+          "uid": "8028",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:21:23",
+          "payment": ["creditcard"],
+          "payment-terminal": true,
+          "slots": 52,
+          "virtual": false,
+          "station_id": 128932790,
+          "banking": true,
+          "normal_bikes": 4,
+          "ebikes": 1
+        }
+      },
+      {
+        "id": "b3a7c57046c9323e40239d235b3b8c98",
+        "name": "Traktir - Foch",
+        "latitude": 48.872755334614,
+        "longitude": 2.2915497802487,
+        "timestamp": "2026-10-27T22:51:05.584130+00:00Z",
+        "free_bikes": 8,
+        "empty_slots": 13,
+        "extra": {
+          "uid": "16103",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:22:16",
+          "payment": ["creditcard"],
+          "payment-terminal": true,
+          "slots": 22,
+          "virtual": false,
+          "station_id": 213687475,
+          "banking": true,
+          "normal_bikes": 3,
+          "ebikes": 5
+        }
+      },
+      {
+        "id": "f237efb2d42fcb847dafe28cd2a5b27d",
+        "name": "Arsène Houssaye - Friedland",
+        "latitude": 48.874510616163,
+        "longitude": 2.2994716674148,
+        "timestamp": "2026-10-27T22:51:05.561793+00:00Z",
+        "free_bikes": 3,
+        "empty_slots": 26,
+        "extra": {
+          "uid": "8201",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:21:34",
+          "slots": 29,
+          "virtual": false,
+          "station_id": 16659964929,
+          "banking": false,
+          "payment-terminal": false,
+          "normal_bikes": 0,
+          "ebikes": 3
+        }
+      },
+      {
+        "id": "cf4dfa3f6879b2834ad1cbc5d7bc6849",
+        "name": "Galilée - Vernet",
+        "latitude": 48.871715878697,
+        "longitude": 2.2985444962978,
+        "timestamp": "2026-10-27T22:51:05.580852+00:00Z",
+        "free_bikes": 2,
+        "empty_slots": 45,
+        "extra": {
+          "uid": "8003",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:16:24",
+          "slots": 47,
+          "virtual": false,
+          "station_id": 54000551,
+          "banking": false,
+          "payment-terminal": false,
+          "normal_bikes": 0,
+          "ebikes": 2
+        }
+      },
+      {
+        "id": "c17a9911812cb8a668dbdce1104e240a",
+        "name": "Balzac - Champs Elysées",
+        "latitude": 48.872699639621,
+        "longitude": 2.3001953959465,
+        "timestamp": "2026-10-27T22:51:05.560817+00:00Z",
+        "free_bikes": 3,
+        "empty_slots": 26,
+        "extra": {
+          "uid": "8052",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:20:22",
+          "payment": ["creditcard"],
+          "payment-terminal": true,
+          "slots": 30,
+          "virtual": false,
+          "station_id": 49791363,
+          "banking": true,
+          "normal_bikes": 2,
+          "ebikes": 1
+        }
+      },
+      {
+        "id": "fd998b7e54a70dc4887c748fc2cdb1d5",
+        "name": "Mac-Mahon - Brey",
+        "latitude": 48.87753208413,
+        "longitude": 2.2945125360529,
+        "timestamp": "2026-10-27T22:51:05.583415+00:00Z",
+        "free_bikes": 11,
+        "empty_slots": 13,
+        "extra": {
+          "uid": "17046",
+          "renting": 1,
+          "returning": 1,
+          "last_updated": "2026-10-27T22:21:25",
+          "payment": ["creditcard"],
+          "payment-terminal": true,
+          "slots": 25,
+          "virtual": false,
+          "station_id": 54000598,
+          "banking": true,
+          "normal_bikes": 8,
+          "ebikes": 3
+        }
+      }
+    ]
+  }
+}

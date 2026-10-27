@@ -1,0 +1,1417 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "CityBikes",
+  "description": {
+    "en": "Bike sharing stations worldwide (Vélib’, Vélo’v…): bikes, e-bikes, free docks.",
+    "fr": "Stations de vélos en libre-service (Vélib’, Vélo’v…) : vélos, électriques, places.",
+    "de": "Leihrad-Stationen weltweit (Vélib’, nextbike…): Räder, E-Bikes, freie Plätze.",
+    "es": "Estaciones de bicis compartidas (Vélib’, Bicing…): bicis, eléctricas, anclajes."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/william-de71/gladys-citybikes:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "categories": ["transport"],
+  "keywords": [
+    "vélo",
+    "velib",
+    "vélo'v",
+    "vls",
+    "bike sharing",
+    "vélo en libre-service",
+    "bicing",
+    "nextbike",
+    "e-bike",
+    "citybik.es"
+  ],
+  "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-citybikes/main/cover.jpg",
+  "transports": ["cloud"],
+  "location": true,
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "CityBikes",
+        "fr": "CityBikes",
+        "de": "CityBikes",
+        "es": "CityBikes"
+      },
+      "description": {
+        "en": "The stations come from the CityBikes API, which gathers the data of more than 800 bike sharing networks in the world (Vélib’, Vélo’v, V3, V’Lille, Bicing, nextbike…). No account and no key. Choose your network and your stations below, then press \"Test the connection\". Data: CityBikes (citybik.es).",
+        "fr": "Les stations viennent de l’API CityBikes, qui rassemble les données de plus de 800 réseaux de vélos en libre-service dans le monde (Vélib’, Vélo’v, V3, V’Lille, Bicing, nextbike…). Ni compte ni clé. Choisissez votre réseau et vos stations ci-dessous, puis appuyez sur « Tester la connexion ». Données : CityBikes (citybik.es).",
+        "de": "Die Stationen stammen aus der CityBikes-API, die die Daten von mehr als 800 Leihradnetzen weltweit bündelt (Vélib’, Vélo’v, Bicing, nextbike…). Kein Konto und kein Schlüssel. Wähle unten dein Netz und deine Stationen und drücke dann „Verbindung testen“. Daten: CityBikes (citybik.es).",
+        "es": "Las estaciones proceden de la API de CityBikes, que reúne los datos de más de 800 redes de bicicletas compartidas del mundo (Vélib’, Vélo’v, Bicing, nextbike…). Sin cuenta ni clave. Elige tu red y tus estaciones abajo y pulsa «Probar la conexión». Datos: CityBikes (citybik.es)."
+      },
+      "links": [
+        {
+          "url": "https://citybik.es/",
+          "label": {
+            "en": "citybik.es",
+            "fr": "citybik.es",
+            "de": "citybik.es",
+            "es": "citybik.es"
+          }
+        },
+        {
+          "url": "https://api.citybik.es/v2/",
+          "label": {
+            "en": "CityBikes API documentation",
+            "fr": "Documentation de l’API CityBikes",
+            "de": "Dokumentation der CityBikes-API",
+            "es": "Documentación de la API de CityBikes"
+          }
+        }
+      ]
+    },
+    {
+      "key": "network",
+      "type": "string",
+      "label": {
+        "en": "Network",
+        "fr": "Réseau",
+        "de": "Netz",
+        "es": "Red"
+      },
+      "description": {
+        "en": "The CityBikes id of the network (\"velib\", \"velov\", \"v3-bordeaux\"), its name or its city: the \"Find a network\" button gives the ids. Empty for the network nearest to the house.",
+        "fr": "L’identifiant CityBikes du réseau (« velib », « velov », « v3-bordeaux »), son nom ou sa ville : le bouton « Chercher un réseau » donne les identifiants. Vide pour le réseau le plus proche de la maison.",
+        "de": "Die CityBikes-Kennung des Netzes („velib“, „nextbike-berlin“), sein Name oder seine Stadt: Die Schaltfläche „Netz suchen“ liefert die Kennungen. Leer für das Netz, das dem Haus am nächsten ist.",
+        "es": "El identificador CityBikes de la red («velib», «bicing»), su nombre o su ciudad: el botón «Buscar una red» da los identificadores. Vacío para la red más cercana a la casa."
+      },
+      "placeholder": {
+        "en": "velib",
+        "fr": "velib",
+        "de": "nextbike-berlin",
+        "es": "bicing"
+      },
+      "required": false
+    },
+    {
+      "key": "house",
+      "type": "select",
+      "source": "houses",
+      "label": {
+        "en": "House",
+        "fr": "Maison",
+        "de": "Haus",
+        "es": "Casa"
+      },
+      "description": {
+        "en": "The house the nearest network and stations are counted from. Empty for the first house with a location. Its coordinates never leave Gladys and the integration: the distances are computed locally.",
+        "fr": "La maison à partir de laquelle sont cherchés le réseau et les stations les plus proches. Vide pour la première maison qui a une position. Ses coordonnées ne quittent jamais Gladys et l’intégration : les distances sont calculées en local.",
+        "de": "Das Haus, von dem aus das nächste Netz und die nächsten Stationen gesucht werden. Leer für das erste Haus mit Standort. Seine Koordinaten verlassen nie Gladys und die Integration: Die Entfernungen werden lokal berechnet.",
+        "es": "La casa desde la que se buscan la red y las estaciones más cercanas. Vacío para la primera casa con ubicación. Sus coordenadas nunca salen de Gladys y de la integración: las distancias se calculan en local."
+      },
+      "required": false
+    },
+    {
+      "key": "stations",
+      "type": "string",
+      "label": {
+        "en": "Followed stations",
+        "fr": "Stations suivies",
+        "de": "Verfolgte Stationen",
+        "es": "Estaciones seguidas"
+      },
+      "description": {
+        "en": "Up to 20, separated by commas: their ids (\"22002\", given by \"Find a station\") or their exact names. A device is offered for each one.",
+        "fr": "Jusqu’à 20, séparées par des virgules : leurs identifiants (« 22002 », donnés par « Chercher une station ») ou leurs noms exacts. Un appareil est proposé pour chacune.",
+        "de": "Bis zu 20, durch Kommas getrennt: ihre Kennungen („22002“, von „Station suchen“ geliefert) oder ihre genauen Namen. Für jede wird ein Gerät angeboten.",
+        "es": "Hasta 20, separadas por comas: sus identificadores («22002», dados por «Buscar una estación») o sus nombres exactos. Se ofrece un dispositivo para cada una."
+      },
+      "placeholder": {
+        "en": "22002, 8057",
+        "fr": "22002, 8057",
+        "de": "22002, 8057",
+        "es": "22002, 8057"
+      },
+      "required": false
+    },
+    {
+      "key": "nearby",
+      "type": "select",
+      "label": {
+        "en": "Stations near the house",
+        "fr": "Stations près de la maison",
+        "de": "Stationen beim Haus",
+        "es": "Estaciones cerca de la casa"
+      },
+      "description": {
+        "en": "Also follow the stations nearest to the house, without typing them.",
+        "fr": "Suivre aussi les stations les plus proches de la maison, sans les saisir.",
+        "de": "Auch die Stationen verfolgen, die dem Haus am nächsten sind, ohne sie einzutippen.",
+        "es": "Seguir también las estaciones más cercanas a la casa, sin escribirlas."
+      },
+      "options": [
+        {
+          "value": "0",
+          "label": {
+            "en": "None",
+            "fr": "Aucune",
+            "de": "Keine",
+            "es": "Ninguna"
+          }
+        },
+        {
+          "value": "1",
+          "label": {
+            "en": "The nearest",
+            "fr": "La plus proche",
+            "de": "Die nächste",
+            "es": "La más cercana"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "en": "The 2 nearest",
+            "fr": "Les 2 plus proches",
+            "de": "Die 2 nächsten",
+            "es": "Las 2 más cercanas"
+          }
+        },
+        {
+          "value": "3",
+          "label": {
+            "en": "The 3 nearest",
+            "fr": "Les 3 plus proches",
+            "de": "Die 3 nächsten",
+            "es": "Las 3 más cercanas"
+          }
+        },
+        {
+          "value": "5",
+          "label": {
+            "en": "The 5 nearest",
+            "fr": "Les 5 plus proches",
+            "de": "Die 5 nächsten",
+            "es": "Las 5 más cercanas"
+          }
+        }
+      ],
+      "default": "3",
+      "required": false
+    },
+    {
+      "key": "options_section",
+      "type": "section",
+      "label": {
+        "en": "Options",
+        "fr": "Options",
+        "de": "Optionen",
+        "es": "Opciones"
+      }
+    },
+    {
+      "key": "interval",
+      "type": "select",
+      "label": {
+        "en": "Reading of the stations",
+        "fr": "Lecture des stations",
+        "de": "Abfrage der Stationen",
+        "es": "Lectura de las estaciones"
+      },
+      "description": {
+        "en": "How often the network is read: one request each time, whatever the number of stations. The CityBikes API allows 300 requests per hour and per address.",
+        "fr": "La fréquence de lecture du réseau : une requête à chaque fois, quel que soit le nombre de stations. L’API CityBikes autorise 300 requêtes par heure et par adresse.",
+        "de": "Wie oft das Netz gelesen wird: jedes Mal eine Anfrage, unabhängig von der Zahl der Stationen. Die CityBikes-API erlaubt 300 Anfragen pro Stunde und Adresse.",
+        "es": "Con qué frecuencia se lee la red: una petición cada vez, sea cual sea el número de estaciones. La API de CityBikes permite 300 peticiones por hora y por dirección."
+      },
+      "options": [
+        {
+          "value": "60",
+          "label": {
+            "en": "Every minute",
+            "fr": "Toutes les minutes",
+            "de": "Jede Minute",
+            "es": "Cada minuto"
+          }
+        },
+        {
+          "value": "120",
+          "label": {
+            "en": "Every 2 minutes",
+            "fr": "Toutes les 2 minutes",
+            "de": "Alle 2 Minuten",
+            "es": "Cada 2 minutos"
+          }
+        },
+        {
+          "value": "300",
+          "label": {
+            "en": "Every 5 minutes",
+            "fr": "Toutes les 5 minutes",
+            "de": "Alle 5 Minuten",
+            "es": "Cada 5 minutos"
+          }
+        },
+        {
+          "value": "600",
+          "label": {
+            "en": "Every 10 minutes",
+            "fr": "Toutes les 10 minutes",
+            "de": "Alle 10 Minuten",
+            "es": "Cada 10 minutos"
+          }
+        }
+      ],
+      "default": "120",
+      "required": false
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "label": {
+        "en": "Language of the texts",
+        "fr": "Langue des textes",
+        "de": "Sprache der Texte",
+        "es": "Idioma de los textos"
+      },
+      "description": {
+        "en": "Feature names, scene summaries and outputs. Automatic: the language of your dashboard, once a CityBikes widget has been displayed. Names of networks and stations stay as the operators write them.",
+        "fr": "Noms des fonctionnalités, résumés et sorties des scènes. Automatique : la langue de votre tableau de bord, dès qu’un widget CityBikes a été affiché. Les noms des réseaux et des stations restent tels que les opérateurs les écrivent.",
+        "de": "Namen der Funktionen, Szenen-Zusammenfassungen und -Ausgaben. Automatisch: die Sprache deines Dashboards, sobald ein CityBikes-Widget angezeigt wurde. Namen von Netzen und Stationen bleiben so, wie die Betreiber sie schreiben.",
+        "es": "Nombres de las funciones, resúmenes y salidas de las escenas. Automático: el idioma de tu panel, en cuanto se haya mostrado un widget de CityBikes. Los nombres de redes y estaciones quedan como los escriben los operadores."
+      },
+      "options": [
+        {
+          "value": "auto",
+          "label": {
+            "en": "Automatic",
+            "fr": "Automatique",
+            "de": "Automatisch",
+            "es": "Automático"
+          }
+        },
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "English",
+            "de": "English",
+            "es": "English"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "Français",
+            "fr": "Français",
+            "de": "Français",
+            "es": "Français"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "Deutsch",
+            "fr": "Deutsch",
+            "de": "Deutsch",
+            "es": "Deutsch"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Español",
+            "fr": "Español",
+            "de": "Español",
+            "es": "Español"
+          }
+        }
+      ],
+      "default": "auto",
+      "required": false
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "label": {
+        "en": "Test the connection",
+        "fr": "Tester la connexion",
+        "de": "Verbindung testen",
+        "es": "Probar la conexión"
+      },
+      "description": {
+        "en": "Reads the list of the networks again, finds your network and your stations and reads them now.",
+        "fr": "Relit la liste des réseaux, retrouve votre réseau et vos stations et les lit tout de suite.",
+        "de": "Liest die Liste der Netze neu, findet dein Netz und deine Stationen und liest sie sofort.",
+        "es": "Vuelve a leer la lista de redes, encuentra tu red y tus estaciones y las lee ahora."
+      },
+      "timeout_seconds": 60
+    },
+    {
+      "key": "search_network",
+      "label": {
+        "en": "Find a network",
+        "fr": "Chercher un réseau",
+        "de": "Netz suchen",
+        "es": "Buscar una red"
+      },
+      "description": {
+        "en": "Gives the id of the networks whose name, city or operator hold these words. Empty: the networks nearest to the house.",
+        "fr": "Donne l’identifiant des réseaux dont le nom, la ville ou l’opérateur contiennent ces mots. Vide : les réseaux les plus proches de la maison.",
+        "de": "Liefert die Kennung der Netze, deren Name, Stadt oder Betreiber diese Wörter enthalten. Leer: die Netze, die dem Haus am nächsten sind.",
+        "es": "Da el identificador de las redes cuyo nombre, ciudad u operador contienen estas palabras. Vacío: las redes más cercanas a la casa."
+      },
+      "timeout_seconds": 30,
+      "fields": [
+        {
+          "key": "query",
+          "type": "string",
+          "label": {
+            "en": "City or network",
+            "fr": "Ville ou réseau",
+            "de": "Stadt oder Netz",
+            "es": "Ciudad o red"
+          },
+          "placeholder": {
+            "en": "Paris",
+            "fr": "Lyon",
+            "de": "Berlin",
+            "es": "Barcelona"
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "search_station",
+      "label": {
+        "en": "Find a station",
+        "fr": "Chercher une station",
+        "de": "Station suchen",
+        "es": "Buscar una estación"
+      },
+      "description": {
+        "en": "Gives the id of the stations of your network whose name or address hold these words, with their bikes now.",
+        "fr": "Donne l’identifiant des stations de votre réseau dont le nom ou l’adresse contiennent ces mots, avec leurs vélos en ce moment.",
+        "de": "Liefert die Kennung der Stationen deines Netzes, deren Name oder Adresse diese Wörter enthalten, mit ihren aktuellen Rädern.",
+        "es": "Da el identificador de las estaciones de tu red cuyo nombre o dirección contienen estas palabras, con sus bicis en este momento."
+      },
+      "timeout_seconds": 30,
+      "fields": [
+        {
+          "key": "query",
+          "type": "string",
+          "label": {
+            "en": "Station name",
+            "fr": "Nom de la station",
+            "de": "Name der Station",
+            "es": "Nombre de la estación"
+          },
+          "placeholder": {
+            "en": "Bastille",
+            "fr": "Bastille",
+            "de": "Alexanderplatz",
+            "es": "Catalunya"
+          },
+          "required": true
+        }
+      ]
+    },
+    {
+      "key": "diagnostic",
+      "label": {
+        "en": "Diagnostic",
+        "fr": "Diagnostic",
+        "de": "Diagnose",
+        "es": "Diagnóstico"
+      },
+      "description": {
+        "en": "Writes to the Logs tab the network and stations found, their last reading, the last error, the requests made and the quota left, for a report on GitHub or the forum.",
+        "fr": "Écrit dans l’onglet Journaux le réseau et les stations trouvés, leur dernière lecture, la dernière erreur, les requêtes faites et le quota restant, pour un signalement sur GitHub ou le forum.",
+        "de": "Schreibt das gefundene Netz und die Stationen, ihre letzte Abfrage, den letzten Fehler, die Anfragen und das restliche Kontingent in den Tab Protokolle, für eine Meldung auf GitHub oder im Forum.",
+        "es": "Escribe en la pestaña Registros la red y las estaciones encontradas, su última lectura, el último error, las peticiones hechas y la cuota restante, para un informe en GitHub o el foro."
+      },
+      "timeout_seconds": 10
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "bikes_available",
+      "label": {
+        "en": "CityBikes: bikes available again",
+        "fr": "CityBikes : vélos de nouveau disponibles",
+        "de": "CityBikes: wieder Räder verfügbar",
+        "es": "CityBikes: vuelve a haber bicis"
+      },
+      "description": {
+        "en": "A followed station had no bike, now it has at least one.",
+        "fr": "Une station suivie n’avait plus de vélo, elle en a de nouveau au moins un.",
+        "de": "Eine verfolgte Station hatte kein Rad, jetzt hat sie mindestens eines.",
+        "es": "Una estación seguida no tenía bicis, ahora tiene al menos una."
+      },
+      "fields": [
+        {
+          "key": "station",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          },
+          "description": {
+            "en": "A station device of the integration. Leave empty for any station.",
+            "fr": "Un appareil station de l’intégration. Laissez vide pour n’importe quelle station.",
+            "de": "Ein Stations-Gerät der Integration. Leer lassen für jede Station.",
+            "es": "Un dispositivo estación de la integración. Déjalo vacío para cualquier estación."
+          },
+          "required": false
+        }
+      ],
+      "variables": [
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "network_name",
+          "type": "string",
+          "label": {
+            "en": "Network",
+            "fr": "Réseau",
+            "de": "Netz",
+            "es": "Red"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "mechanical",
+          "type": "number",
+          "label": {
+            "en": "Mechanical bikes (-1 if unknown)",
+            "fr": "Vélos mécaniques (-1 si inconnu)",
+            "de": "Normale Räder (-1 wenn unbekannt)",
+            "es": "Mecánicas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "station_empty",
+      "label": {
+        "en": "CityBikes: station empty",
+        "fr": "CityBikes : station vide",
+        "de": "CityBikes: Station leer",
+        "es": "CityBikes: estación vacía"
+      },
+      "description": {
+        "en": "The last bike of a followed station was taken (or the station closed).",
+        "fr": "Le dernier vélo d’une station suivie a été pris (ou la station a fermé).",
+        "de": "Das letzte Rad einer verfolgten Station wurde genommen (oder die Station hat geschlossen).",
+        "es": "Se cogió la última bici de una estación seguida (o la estación cerró)."
+      },
+      "fields": [
+        {
+          "key": "station",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          },
+          "description": {
+            "en": "A station device of the integration. Leave empty for any station.",
+            "fr": "Un appareil station de l’intégration. Laissez vide pour n’importe quelle station.",
+            "de": "Ein Stations-Gerät der Integration. Leer lassen für jede Station.",
+            "es": "Un dispositivo estación de la integración. Déjalo vacío para cualquier estación."
+          },
+          "required": false
+        }
+      ],
+      "variables": [
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "network_name",
+          "type": "string",
+          "label": {
+            "en": "Network",
+            "fr": "Réseau",
+            "de": "Netz",
+            "es": "Red"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "mechanical",
+          "type": "number",
+          "label": {
+            "en": "Mechanical bikes (-1 if unknown)",
+            "fr": "Vélos mécaniques (-1 si inconnu)",
+            "de": "Normale Räder (-1 wenn unbekannt)",
+            "es": "Mecánicas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "ebikes_available",
+      "label": {
+        "en": "CityBikes: e-bikes available again",
+        "fr": "CityBikes : vélos électriques de retour",
+        "de": "CityBikes: wieder E-Bikes verfügbar",
+        "es": "CityBikes: vuelve a haber eléctricas"
+      },
+      "description": {
+        "en": "A followed station had no e-bike, now it has at least one (networks counting the e-bikes).",
+        "fr": "Une station suivie n’avait plus de vélo électrique, elle en a de nouveau au moins un (réseaux qui comptent les électriques).",
+        "de": "Eine verfolgte Station hatte kein E-Bike, jetzt hat sie mindestens eines (Netze, die E-Bikes zählen).",
+        "es": "Una estación seguida no tenía eléctricas, ahora tiene al menos una (redes que cuentan las eléctricas)."
+      },
+      "fields": [
+        {
+          "key": "station",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          },
+          "description": {
+            "en": "A station device of the integration. Leave empty for any station.",
+            "fr": "Un appareil station de l’intégration. Laissez vide pour n’importe quelle station.",
+            "de": "Ein Stations-Gerät der Integration. Leer lassen für jede Station.",
+            "es": "Un dispositivo estación de la integración. Déjalo vacío para cualquier estación."
+          },
+          "required": false
+        }
+      ],
+      "variables": [
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "network_name",
+          "type": "string",
+          "label": {
+            "en": "Network",
+            "fr": "Réseau",
+            "de": "Netz",
+            "es": "Red"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "mechanical",
+          "type": "number",
+          "label": {
+            "en": "Mechanical bikes (-1 if unknown)",
+            "fr": "Vélos mécaniques (-1 si inconnu)",
+            "de": "Normale Räder (-1 wenn unbekannt)",
+            "es": "Mecánicas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "ebikes_gone",
+      "label": {
+        "en": "CityBikes: no e-bike left",
+        "fr": "CityBikes : plus de vélo électrique",
+        "de": "CityBikes: kein E-Bike mehr",
+        "es": "CityBikes: no quedan eléctricas"
+      },
+      "description": {
+        "en": "The last e-bike of a followed station was taken.",
+        "fr": "Le dernier vélo électrique d’une station suivie a été pris.",
+        "de": "Das letzte E-Bike einer verfolgten Station wurde genommen.",
+        "es": "Se cogió la última eléctrica de una estación seguida."
+      },
+      "fields": [
+        {
+          "key": "station",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          },
+          "description": {
+            "en": "A station device of the integration. Leave empty for any station.",
+            "fr": "Un appareil station de l’intégration. Laissez vide pour n’importe quelle station.",
+            "de": "Ein Stations-Gerät der Integration. Leer lassen für jede Station.",
+            "es": "Un dispositivo estación de la integración. Déjalo vacío para cualquier estación."
+          },
+          "required": false
+        }
+      ],
+      "variables": [
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "network_name",
+          "type": "string",
+          "label": {
+            "en": "Network",
+            "fr": "Réseau",
+            "de": "Netz",
+            "es": "Red"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "mechanical",
+          "type": "number",
+          "label": {
+            "en": "Mechanical bikes (-1 if unknown)",
+            "fr": "Vélos mécaniques (-1 si inconnu)",
+            "de": "Normale Räder (-1 wenn unbekannt)",
+            "es": "Mecánicas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "docks_available",
+      "label": {
+        "en": "CityBikes: free docks again",
+        "fr": "CityBikes : places de nouveau libres",
+        "de": "CityBikes: wieder freie Plätze",
+        "es": "CityBikes: vuelve a haber anclajes"
+      },
+      "description": {
+        "en": "A followed station was full, now a bike can be returned there.",
+        "fr": "Une station suivie était pleine, on peut de nouveau y rendre un vélo.",
+        "de": "Eine verfolgte Station war voll, jetzt kann man dort wieder ein Rad zurückgeben.",
+        "es": "Una estación seguida estaba llena, ahora se puede devolver una bici."
+      },
+      "fields": [
+        {
+          "key": "station",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          },
+          "description": {
+            "en": "A station device of the integration. Leave empty for any station.",
+            "fr": "Un appareil station de l’intégration. Laissez vide pour n’importe quelle station.",
+            "de": "Ein Stations-Gerät der Integration. Leer lassen für jede Station.",
+            "es": "Un dispositivo estación de la integración. Déjalo vacío para cualquier estación."
+          },
+          "required": false
+        }
+      ],
+      "variables": [
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "network_name",
+          "type": "string",
+          "label": {
+            "en": "Network",
+            "fr": "Réseau",
+            "de": "Netz",
+            "es": "Red"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "mechanical",
+          "type": "number",
+          "label": {
+            "en": "Mechanical bikes (-1 if unknown)",
+            "fr": "Vélos mécaniques (-1 si inconnu)",
+            "de": "Normale Räder (-1 wenn unbekannt)",
+            "es": "Mecánicas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "station_full",
+      "label": {
+        "en": "CityBikes: station full",
+        "fr": "CityBikes : station pleine",
+        "de": "CityBikes: Station voll",
+        "es": "CityBikes: estación llena"
+      },
+      "description": {
+        "en": "A followed station has no free dock left: no bike can be returned there.",
+        "fr": "Une station suivie n’a plus de place libre : impossible d’y rendre un vélo.",
+        "de": "Eine verfolgte Station hat keinen freien Platz mehr: Dort kann kein Rad zurückgegeben werden.",
+        "es": "Una estación seguida ya no tiene anclajes libres: no se puede devolver ninguna bici."
+      },
+      "fields": [
+        {
+          "key": "station",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          },
+          "description": {
+            "en": "A station device of the integration. Leave empty for any station.",
+            "fr": "Un appareil station de l’intégration. Laissez vide pour n’importe quelle station.",
+            "de": "Ein Stations-Gerät der Integration. Leer lassen für jede Station.",
+            "es": "Un dispositivo estación de la integración. Déjalo vacío para cualquier estación."
+          },
+          "required": false
+        }
+      ],
+      "variables": [
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "network_name",
+          "type": "string",
+          "label": {
+            "en": "Network",
+            "fr": "Réseau",
+            "de": "Netz",
+            "es": "Red"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "mechanical",
+          "type": "number",
+          "label": {
+            "en": "Mechanical bikes (-1 if unknown)",
+            "fr": "Vélos mécaniques (-1 si inconnu)",
+            "de": "Normale Räder (-1 wenn unbekannt)",
+            "es": "Mecánicas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "get_station",
+      "label": {
+        "en": "CityBikes: read a station",
+        "fr": "CityBikes : lire une station",
+        "de": "CityBikes: Station lesen",
+        "es": "CityBikes: leer una estación"
+      },
+      "description": {
+        "en": "The bikes, e-bikes and free docks of a station now, and a sentence for a message.",
+        "fr": "Les vélos, vélos électriques et places libres d’une station en ce moment, et une phrase pour un message.",
+        "de": "Die Räder, E-Bikes und freien Plätze einer Station jetzt, und ein Satz für eine Nachricht.",
+        "es": "Las bicis, eléctricas y anclajes libres de una estación ahora, y una frase para un mensaje."
+      },
+      "timeout_seconds": 40,
+      "fields": [
+        {
+          "key": "station",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          },
+          "description": {
+            "en": "A station device of the integration. Leave empty for the first station.",
+            "fr": "Un appareil station de l’intégration. Laissez vide pour la première station.",
+            "de": "Ein Stations-Gerät der Integration. Leer lassen für die erste Station.",
+            "es": "Un dispositivo estación de la integración. Déjalo vacío para la primera estación."
+          },
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "Station listed",
+            "fr": "Station listée",
+            "de": "Station gelistet",
+            "es": "Estación listada"
+          }
+        },
+        {
+          "key": "open",
+          "type": "boolean",
+          "label": {
+            "en": "Open",
+            "fr": "Ouverte",
+            "de": "Geöffnet",
+            "es": "Abierta"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "mechanical",
+          "type": "number",
+          "label": {
+            "en": "Mechanical bikes (-1 if unknown)",
+            "fr": "Vélos mécaniques (-1 si inconnu)",
+            "de": "Normale Räder (-1 wenn unbekannt)",
+            "es": "Mecánicas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          },
+          "description": {
+            "en": "A sentence ready to put in a message.",
+            "fr": "Une phrase prête à mettre dans un message.",
+            "de": "Ein Satz, bereit für eine Nachricht.",
+            "es": "Una frase lista para poner en un mensaje."
+          }
+        }
+      ]
+    },
+    {
+      "key": "find_station",
+      "label": {
+        "en": "CityBikes: nearest station",
+        "fr": "CityBikes : station la plus proche",
+        "de": "CityBikes: nächste Station",
+        "es": "CityBikes: estación más cercana"
+      },
+      "description": {
+        "en": "The nearest station of the network with a bike, an e-bike or a free dock, from the house or from a followed station.",
+        "fr": "La station du réseau la plus proche avec un vélo, un vélo électrique ou une place libre, depuis la maison ou depuis une station suivie.",
+        "de": "Die nächste Station des Netzes mit einem Rad, einem E-Bike oder einem freien Platz, vom Haus oder von einer verfolgten Station aus.",
+        "es": "La estación de la red más cercana con una bici, una eléctrica o un anclaje libre, desde la casa o desde una estación seguida."
+      },
+      "timeout_seconds": 40,
+      "fields": [
+        {
+          "key": "kind",
+          "type": "select",
+          "label": {
+            "en": "Looking for",
+            "fr": "Chercher",
+            "de": "Gesucht",
+            "es": "Buscar"
+          },
+          "options": [
+            {
+              "value": "bike",
+              "label": {
+                "en": "A bike",
+                "fr": "Un vélo",
+                "de": "Ein Rad",
+                "es": "Una bici"
+              }
+            },
+            {
+              "value": "ebike",
+              "label": {
+                "en": "An e-bike",
+                "fr": "Un vélo électrique",
+                "de": "Ein E-Bike",
+                "es": "Una eléctrica"
+              }
+            },
+            {
+              "value": "dock",
+              "label": {
+                "en": "A free dock",
+                "fr": "Une place libre",
+                "de": "Ein freier Platz",
+                "es": "Un anclaje libre"
+              }
+            }
+          ],
+          "default": "bike",
+          "required": false
+        },
+        {
+          "key": "near",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Near",
+            "fr": "Près de",
+            "de": "In der Nähe von",
+            "es": "Cerca de"
+          },
+          "description": {
+            "en": "A followed station to search around. Empty: around the house.",
+            "fr": "Une station suivie autour de laquelle chercher. Vide : autour de la maison.",
+            "de": "Eine verfolgte Station, um die herum gesucht wird. Leer: um das Haus herum.",
+            "es": "Una estación seguida alrededor de la cual buscar. Vacío: alrededor de la casa."
+          },
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "Station found",
+            "fr": "Station trouvée",
+            "de": "Station gefunden",
+            "es": "Estación encontrada"
+          }
+        },
+        {
+          "key": "station_name",
+          "type": "string",
+          "label": {
+            "en": "Station",
+            "fr": "Station",
+            "de": "Station",
+            "es": "Estación"
+          }
+        },
+        {
+          "key": "distance",
+          "type": "number",
+          "label": {
+            "en": "Distance (m, -1 if none)",
+            "fr": "Distance (m, -1 si aucune)",
+            "de": "Entfernung (m, -1 wenn keine)",
+            "es": "Distancia (m, -1 si no hay)"
+          }
+        },
+        {
+          "key": "bikes",
+          "type": "number",
+          "label": {
+            "en": "Available bikes",
+            "fr": "Vélos disponibles",
+            "de": "Verfügbare Räder",
+            "es": "Bicicletas disponibles"
+          }
+        },
+        {
+          "key": "ebikes",
+          "type": "number",
+          "label": {
+            "en": "E-bikes (-1 if unknown)",
+            "fr": "Vélos électriques (-1 si inconnu)",
+            "de": "E-Bikes (-1 wenn unbekannt)",
+            "es": "Eléctricas (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "docks",
+          "type": "number",
+          "label": {
+            "en": "Free docks (-1 if unknown)",
+            "fr": "Places libres (-1 si inconnu)",
+            "de": "Freie Plätze (-1 wenn unbekannt)",
+            "es": "Anclajes libres (-1 si se desconoce)"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          },
+          "description": {
+            "en": "A sentence ready to put in a message.",
+            "fr": "Une phrase prête à mettre dans un message.",
+            "de": "Ein Satz, bereit für eine Nachricht.",
+            "es": "Una frase lista para poner en un mensaje."
+          }
+        }
+      ]
+    }
+  ],
+  "widgets": [
+    {
+      "key": "stations",
+      "label": {
+        "en": "Bike stations",
+        "fr": "Stations de vélos",
+        "de": "Leihrad-Stationen",
+        "es": "Estaciones de bicis"
+      },
+      "description": {
+        "en": "Bikes, e-bikes and free docks of your stations.",
+        "fr": "Vélos, vélos électriques et places libres de vos stations.",
+        "de": "Räder, E-Bikes und freie Plätze deiner Stationen.",
+        "es": "Bicis, eléctricas y anclajes libres de tus estaciones."
+      },
+      "icon": "map-pin",
+      "settings": [
+        {
+          "key": "stations",
+          "type": "multi_select",
+          "source": "devices",
+          "label": {
+            "en": "Stations",
+            "fr": "Stations",
+            "de": "Stationen",
+            "es": "Estaciones"
+          },
+          "description": {
+            "en": "Station devices to show. Empty: every station device you added.",
+            "fr": "Les appareils stations à afficher. Vide : tous les appareils stations que vous avez ajoutés.",
+            "de": "Anzuzeigende Stations-Geräte. Leer: alle Stations-Geräte, die du hinzugefügt hast.",
+            "es": "Dispositivos estación que mostrar. Vacío: todos los dispositivos estación que añadiste."
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "nearby",
+      "label": {
+        "en": "Bikes near home",
+        "fr": "Vélos près de chez moi",
+        "de": "Räder in der Nähe",
+        "es": "Bicis cerca de casa"
+      },
+      "description": {
+        "en": "The stations nearest to the house, with their bikes and free docks.",
+        "fr": "Les stations les plus proches de la maison, avec leurs vélos et places libres.",
+        "de": "Die Stationen, die dem Haus am nächsten sind, mit ihren Rädern und freien Plätzen.",
+        "es": "Las estaciones más cercanas a la casa, con sus bicis y anclajes libres."
+      },
+      "icon": "navigation",
+      "settings": [
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Stations shown",
+            "fr": "Stations affichées",
+            "de": "Angezeigte Stationen",
+            "es": "Estaciones mostradas"
+          },
+          "min": 1,
+          "max": 8,
+          "default": 5,
+          "required": false
+        },
+        {
+          "key": "show",
+          "type": "select",
+          "label": {
+            "en": "Show",
+            "fr": "Afficher",
+            "de": "Anzeigen",
+            "es": "Mostrar"
+          },
+          "options": [
+            {
+              "value": "all",
+              "label": {
+                "en": "Every station",
+                "fr": "Toutes les stations",
+                "de": "Alle Stationen",
+                "es": "Todas las estaciones"
+              }
+            },
+            {
+              "value": "bike",
+              "label": {
+                "en": "With a bike",
+                "fr": "Avec un vélo",
+                "de": "Mit einem Rad",
+                "es": "Con una bici"
+              }
+            },
+            {
+              "value": "ebike",
+              "label": {
+                "en": "With an e-bike",
+                "fr": "Avec un vélo électrique",
+                "de": "Mit einem E-Bike",
+                "es": "Con una eléctrica"
+              }
+            },
+            {
+              "value": "dock",
+              "label": {
+                "en": "With a free dock",
+                "fr": "Avec une place libre",
+                "de": "Mit freiem Platz",
+                "es": "Con anclaje libre"
+              }
+            }
+          ],
+          "default": "all",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

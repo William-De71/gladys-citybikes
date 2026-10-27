@@ -1,0 +1,15 @@
+Gladys CityBikes integration
+Copyright 2026 William Deren
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The networks and stations come from the CityBikes project (https://citybik.es),
+a free API powered by PyBikes (https://github.com/eskerda/pybikes), which
+gathers the data published by the bike sharing operators. Its terms ask every
+project using the API to say so and link to it: the widgets show
+"Data: CityBikes (citybik.es)", and the documentation and the README credit it.
+The files under test/fixtures are reduced answers of this API, kept for the
+tests only.
+
+This community integration is not affiliated with, endorsed or sponsored by
+the CityBikes project or by any bike sharing operator.

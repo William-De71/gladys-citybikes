@@ -1,0 +1,75 @@
+{
+  "network": {
+    "id": "nextbike-berlin",
+    "name": "Nextbike",
+    "location": {
+      "latitude": 52.5087,
+      "longitude": 13.3563,
+      "city": "Berlin",
+      "country": "DE"
+    },
+    "href": "/v2/networks/nextbike-berlin",
+    "company": ["Nextbike GmbH"],
+    "system": "Nextbike",
+    "stations": [
+      {
+        "id": "05bc9616bcaf5c8a4c6653231babfb2e",
+        "name": "Richard-Ermisch-Straße/Viehtrift (Mobilitätsstation)",
+        "latitude": 52.521481,
+        "longitude": 13.459487,
+        "timestamp": "2026-10-27T22:52:20.941577+00:00Z",
+        "free_bikes": 0,
+        "empty_slots": null,
+        "extra": {
+          "uid": "613751648",
+          "number": "10093",
+          "virtual": false
+        }
+      },
+      {
+        "id": "306d9495c536060adec3f1811385cf27",
+        "name": "Schöneberger Straße / Gleisdreieck (Mobilitätsstation)",
+        "latitude": 52.500705,
+        "longitude": 13.373875,
+        "timestamp": "2026-10-27T22:52:20.941500+00:00Z",
+        "free_bikes": 0,
+        "empty_slots": null,
+        "extra": {
+          "uid": "613725213",
+          "number": "10576",
+          "virtual": false
+        }
+      },
+      {
+        "id": "00455239920d92cdc60461f8b8619fac",
+        "name": "Linienstraße/Weydingerstraße",
+        "latitude": 52.527005,
+        "longitude": 13.414112,
+        "timestamp": "2026-10-27T22:52:20.864731+00:00Z",
+        "free_bikes": 7,
+        "empty_slots": 0,
+        "extra": {
+          "uid": "138056052",
+          "number": "10740",
+          "slots": 6,
+          "virtual": false
+        }
+      },
+      {
+        "id": "008c26a668de108ce1393e5db4b4ae90",
+        "name": "Jelbi U Walther-Scheiber-Platz/Lefèvrestraße (FRI/LE)",
+        "latitude": 52.466991,
+        "longitude": 13.328465,
+        "timestamp": "2026-10-27T22:52:20.940377+00:00Z",
+        "free_bikes": 4,
+        "empty_slots": 3,
+        "extra": {
+          "uid": "523749684",
+          "number": "13931",
+          "slots": 7,
+          "virtual": false
+        }
+      }
+    ]
+  }
+}

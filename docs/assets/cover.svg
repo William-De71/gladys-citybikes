@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="534" viewBox="0 0 800 534">
+  <!-- Cover of the CityBikes integration for Gladys Assistant (illustration,
+       not the logo of CityBikes nor of any operator). A bike sharing station
+       in a city at dusk: docked bikes, one e-bike, a terminal showing the
+       bikes and free docks left. Built into cover.jpg by
+       scripts/build-cover.sh. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d5a80"/>
+      <stop offset="0.6" stop-color="#98c1d9"/>
+      <stop offset="1" stop-color="#f6d6ad"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#141a24"/>
+      <stop offset="1" stop-color="#0b0f16"/>
+    </linearGradient>
+    <g id="bike">
+      <!-- wheels -->
+      <circle cx="0" cy="0" r="34" fill="none" stroke="#1f2328" stroke-width="7"/>
+      <circle cx="110" cy="0" r="34" fill="none" stroke="#1f2328" stroke-width="7"/>
+      <circle cx="0" cy="0" r="5" fill="#1f2328"/>
+      <circle cx="110" cy="0" r="5" fill="#1f2328"/>
+      <!-- frame -->
+      <path d="M0 0 L42 -2 L78 -56 L28 -56 Z M42 -2 L22 -70 M78 -56 L110 0 M78 -56 L72 -80"
+            fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- saddle, handlebar, basket -->
+      <rect x="8" y="-78" width="30" height="8" rx="4" fill="#1f2328"/>
+      <path d="M62 -82 H86" stroke="#1f2328" stroke-width="7" stroke-linecap="round"/>
+      <rect x="84" y="-74" width="34" height="22" rx="4" fill="none" stroke="#1f2328" stroke-width="5"/>
+    </g>
+  </defs>
+  <rect width="800" height="534" fill="url(#sky)"/>
+
+  <!-- the city -->
+  <path d="M0 300 L0 210 L50 210 L50 170 L92 170 L92 214 L140 214 L140 150 L160 128 L180 150 L180 214 L236 214 L236 186 L284 186 L284 140 L322 140 L322 214 L372 214 L372 176 L398 156 L424 176 L424 214 L488 214 L488 182 L536 182 L536 120 L570 120 L570 214 L626 214 L626 172 L668 172 L668 214 L716 214 L716 150 L738 118 L760 150 L760 214 L800 214 L800 300 Z" fill="#2f4562" opacity="0.55"/>
+  <g fill="#f8e1a0" opacity="0.8">
+    <rect x="62" y="186" width="10" height="12"/><rect x="152" y="166" width="10" height="12"/>
+    <rect x="296" y="156" width="10" height="12"/><rect x="296" y="182" width="10" height="12"/>
+    <rect x="548" y="136" width="10" height="12"/><rect x="548" y="164" width="10" height="12"/>
+    <rect x="728" y="166" width="10" height="12"/><rect x="640" y="188" width="10" height="12"/>
+  </g>
+
+  <!-- the pavement -->
+  <rect x="0" y="300" width="800" height="234" fill="#b9b2a6"/>
+  <rect x="0" y="300" width="800" height="10" fill="#9d968a"/>
+  <rect x="0" y="470" width="800" height="64" fill="#6f747b"/>
+  <g fill="#e9e6df"><rect x="40" y="498" width="80" height="8"/><rect x="220" y="498" width="80" height="8"/>
+    <rect x="400" y="498" width="80" height="8"/><rect x="580" y="498" width="80" height="8"/></g>
+
+  <!-- the docks -->
+  <g fill="#5b6470">
+    <rect x="78" y="350" width="14" height="86" rx="4"/>
+    <rect x="248" y="350" width="14" height="86" rx="4"/>
+    <rect x="418" y="350" width="14" height="86" rx="4"/>
+  </g>
+  <rect x="60" y="430" width="420" height="10" rx="5" fill="#4a525c"/>
+
+  <!-- three docked bikes, the middle one an e-bike -->
+  <use href="#bike" x="60" y="420" color="#2a9d8f"/>
+  <use href="#bike" x="230" y="420" color="#2a9d8f"/>
+  <use href="#bike" x="400" y="420" color="#2a9d8f"/>
+  <g transform="translate(276 382)">
+    <rect x="-12" y="-12" width="24" height="24" rx="6" fill="#f4a261"/>
+    <path d="M2 -9 L-6 2 H0 L-2 9 L6 -2 H0 Z" fill="#1f2328"/>
+  </g>
+
+  <!-- the terminal: bikes and free docks left -->
+  <g transform="translate(590 196)">
+    <rect x="34" y="150" width="22" height="120" fill="#5b6470"/>
+    <rect x="0" y="0" width="150" height="170" rx="14" fill="#2b3440"/>
+    <rect x="12" y="12" width="126" height="130" rx="8" fill="url(#screen)"/>
+    <text x="75" y="48" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#9fb3c8">bikes</text>
+    <text x="75" y="86" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="38" font-weight="bold" fill="#7bd389">13</text>
+    <text x="75" y="118" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#9fb3c8">12 docks</text>
+    <circle cx="75" cy="156" r="5" fill="#7bd389"/>
+  </g>
+
+  <!-- title -->
+  <g font-family="DejaVu Sans, Arial, sans-serif">
+    <text x="40" y="76" font-size="54" font-weight="bold" fill="#ffffff">CityBikes</text>
+    <text x="42" y="114" font-size="24" fill="#ffffff">Bike sharing in Gladys Assistant</text>
+  </g>
+</svg>

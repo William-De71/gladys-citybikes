@@ -1,0 +1,136 @@
+{
+  "networks": [
+    {
+      "id": "bicing",
+      "name": "Bicing",
+      "location": {
+        "latitude": 41.3850639,
+        "longitude": 2.1734035,
+        "city": "Barcelona",
+        "country": "ES"
+      },
+      "company": ["Barcelona de Serveis Municipals, S.A. (BSM)", "CESPA", "PBSC"]
+    },
+    {
+      "id": "divvy",
+      "name": "Divvy",
+      "location": {
+        "latitude": 41.8781136,
+        "longitude": -87.6297982,
+        "city": "Chicago, IL",
+        "country": "US"
+      },
+      "company": ["Motivate International, Inc.", "PBSC Urban Solutions"]
+    },
+    {
+      "id": "le-velo-star",
+      "name": "LE vélo Star",
+      "location": {
+        "latitude": 48.114167,
+        "longitude": -1.680833,
+        "city": "Rennes",
+        "country": "FR"
+      },
+      "company": ["Keolis", "Rennes Metropole"]
+    },
+    {
+      "id": "nextbike-berlin",
+      "name": "Nextbike",
+      "location": {
+        "latitude": 52.5087,
+        "longitude": 13.3563,
+        "city": "Berlin",
+        "country": "DE"
+      },
+      "company": ["Nextbike GmbH"]
+    },
+    {
+      "id": "santander-cycles",
+      "name": "Santander Cycles",
+      "location": {
+        "latitude": 51.51121389999999,
+        "longitude": -0.1198244,
+        "city": "London",
+        "country": "GB"
+      },
+      "company": ["PBSC", "Serco Group plc"]
+    },
+    {
+      "id": "v3-bordeaux",
+      "name": "V³",
+      "location": {
+        "latitude": 44.837789,
+        "longitude": -0.57918,
+        "city": "Bordeaux",
+        "country": "FR"
+      },
+      "company": ["Keolis Bordeaux Métropole"]
+    },
+    {
+      "id": "velib",
+      "name": "Vélib' Métropole",
+      "location": {
+        "latitude": 48.856614,
+        "longitude": 2.3522219,
+        "city": "Paris",
+        "country": "FR"
+      },
+      "company": ["Smovengo"]
+    },
+    {
+      "id": "velo2",
+      "name": "VélO2",
+      "location": {
+        "latitude": 49.03561699999999,
+        "longitude": 2.060325,
+        "city": "Cergy",
+        "country": "FR"
+      },
+      "company": ["Nextbike GmbH"]
+    },
+    {
+      "id": "velocite-besancon",
+      "name": "VéloCité",
+      "location": {
+        "latitude": 47.237829,
+        "longitude": 6.024053899999999,
+        "city": "Besançon",
+        "country": "FR"
+      },
+      "company": ["JCDecaux"]
+    },
+    {
+      "id": "velomagg",
+      "name": "Vélomagg",
+      "location": {
+        "latitude": 43.6119,
+        "longitude": 3.8772,
+        "city": "Montpellier",
+        "country": "FR"
+      },
+      "company": ["TaM", "Fifteen"]
+    },
+    {
+      "id": "velov",
+      "name": "Vélo'V",
+      "location": {
+        "latitude": 45.764043,
+        "longitude": 4.835659,
+        "city": "Lyon",
+        "country": "FR"
+      },
+      "company": ["JCDecaux"]
+    },
+    {
+      "id": "vlille",
+      "name": "V'Lille",
+      "location": {
+        "latitude": 50.62925,
+        "longitude": 3.057256,
+        "city": "Lille",
+        "country": "FR"
+      },
+      "company": ["Keolis", "ilévia"]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "network": {
+    "id": "vlille",
+    "name": "V'Lille",
+    "location": {
+      "latitude": 50.62925,
+      "longitude": 3.057256,
+      "city": "Lille",
+      "country": "FR"
+    },
+    "href": "/v2/networks/vlille",
+    "company": ["Keolis", "ilévia"],
+    "source": "https://transport.data.gouv.fr/datasets/ilevia-vlille-disponibilite-en-temps-reel",
+    "license": {
+      "name": "Licence Ouverte 2.0",
+      "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0"
+    },
+    "gbfs_href": "https://media.ilevia.fr/opendata/gbfs.json",
+    "stations": [
+      {
+        "id": "00f10566e38fcb8655f598b6c6b0bfe6",
+        "name": "Mercure",
+        "latitude": 50.704693,
+        "longitude": 3.160515,
+        "timestamp": "2026-10-27T22:52:31.243141+00:00Z",
+        "free_bikes": 3,
+        "empty_slots": 15,
+        "extra": {
+          "uid": "259",
+          "renting": true,
+          "returning": true,
+          "last_updated": "2026-10-27T22:51:25",
+          "post_code": "59200",
+          "slots": 18,
+          "normal_bikes": 3,
+          "virtual": false
+        }
+      },
+      {
+        "id": "0257185921d3e68260dd13f4119064e7",
+        "name": "Roubaix Mairie",
+        "latitude": 50.69184,
+        "longitude": 3.173925,
+        "timestamp": "2026-10-27T22:52:31.242341+00:00Z",
+        "free_bikes": 11,
+        "empty_slots": 19,
+        "extra": {
+          "uid": "221",
+          "renting": true,
+          "returning": true,
+          "last_updated": "2026-10-27T22:48:48",
+          "post_code": "59100",
+          "slots": 30,
+          "normal_bikes": 11,
+          "virtual": false
+        }
+      },
+      {
+        "id": "02af2ecbfedafa736b58bba89f950f7a",
+        "name": "Blanchemaille",
+        "latitude": 50.696909,
+        "longitude": 3.168664,
+        "timestamp": "2026-10-27T22:52:31.240266+00:00Z",
+        "free_bikes": 1,
+        "empty_slots": 7,
+        "extra": {
+          "uid": "268",
+          "renting": true,
+          "returning": true,
+          "last_updated": "2026-10-27T22:51:07",
+          "post_code": "59100",
+          "slots": 8,
+          "normal_bikes": 1,
+          "virtual": false
+        }
+      },
+      {
+        "id": "02bed95a9d5409d6b885780b3379ab02",
+        "name": "Marbrerie",
+        "latitude": 50.63041,
+        "longitude": 3.097037,
+        "timestamp": "2026-10-27T22:52:31.242566+00:00Z",
+        "free_bikes": 16,
+        "empty_slots": 2,
+        "extra": {
+          "uid": "95",
+          "renting": true,
+          "returning": true,
+          "last_updated": "2026-10-27T22:51:00",
+          "post_code": "59260",
+          "slots": 18,
+          "normal_bikes": 16,
+          "virtual": false
+        }
+      }
+    ]
+  }
+}
